@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ruskin Maps</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="ruskin.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://openlayers.org/en/v3.5.0/build/ol.js" type="text/javascript"></script>
+
+ 	<style>
+     	#map {
+       	  width: 800px;
+       	  height: 400px;
+       	  border: 2px solid white;
+    	 }
+    	 .ol-attribution a {
+        	 color: black;
+  		  }
+ 	</style>
+</head>
+
+<body>
+	<h1>The Ruskin Family Journey</h1>
+	<div id="map" class="map"></div>
+	<script type="text/javascript">
+	var map = new ol.Map({
+    target: 'map',
+    layers: [
+      new ol.layer.Tile({
+    	source: new ol.source.TileWMS({
+    	 url: 'http://demo.opengeo.org/geoserver/wms',
+    	 params: {LAYERS: 'nasa:bluemarble', VERSION: '1.1.1'}
+    	})
+      })
+    ],
+    view: new ol.View({
+      	projection: 'EPSG:4326',
+        center: [11, 48],
+        zoom: 4,
+        maxResolution: 0.703125
+    })
+  });
+	</script>
+</body>
+</html>
